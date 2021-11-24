@@ -1,0 +1,69 @@
+---
+title: Hello Title ;-)
+layout: sections.njk
+
+footnote: this is a footnote
+header_text: Vestibulum id ligula porta felis euismod semper. Nullam quis risus eget urna mollis ornare vel eu leo.
+footer_text: Donec sed odio dui. Maecenas sed diam eget risus varius blandit sit amet non magna.
+filter_test: I should have dashes between words
+
+sections:
+  - component: intro
+    disabled: false
+    animateSection: false
+    inContainer: true
+    marginTop: false
+    marginBottom: true
+    paddingTop: false
+    paddingBottom: true
+    backgroundColor: ""
+    targetID: ""
+    title: Intro Title Numba 1
+    subTitle: Intro sub title for Numba 1
+    prose: |-
+      Nullam quis risus **eget urna mollis ornare** vel eu leo. Sed posuere [consectetur](https://apple.com) est at lobortis. _Nullam id dolor_ id nibh ultricies vehicula ut id elit. Aenean lacinia bibendum nulla sed consectetur. Cras mattis consectetur purus sit amet fermentum. [Link to next page](/other-page)
+
+    hasCtas: true
+    ctas:
+      - url: "/product/"
+        label: Go There
+        isExternal: false
+        isButton: true
+        buttonStyle: "primary"
+  - component: intro
+    disabled: false
+    animateSection: false
+    inContainer: true
+    marginTop: false
+    marginBottom: true
+    paddingTop: false
+    paddingBottom: true
+    backgroundColor: ""
+    targetID: ""
+    title: Intro Title Numba 2
+    subTitle: Intro sub title for Numba 2
+    prose: |-
+      Aenean lacinia bibendum nulla sed consectetur. Nulla vitae elit libero, a pharetra augue. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla. **Donec ullamcorper nulla non metus auctor fringilla**. Nullam quis risus eget urna mollis ornare vel eu leo.
+
+    hasCtas: true
+    ctas:
+      - url: "/product/"
+        label: Go There
+        isExternal: false
+        isButton: true
+        buttonStyle: "primary"
+---
+
+## This is the Content
+
+Cum sociis natoque **penatibus et magnis** dis parturient montes, nascetur ridiculus mus. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Cras mattis consectetur purus sit _amet fermentum_. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Duis mollis, est non [commodo luctus](https://www.apple.com), nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+
+{{ filter_test | spaceToDash }}
+
+Nullam quis risus eget urna mollis ornare vel eu leo. **Vestibulum id ligula porta felis** euismod semper. Lorem ipsum dolor sit amet, consectetur adipiscing elit. _Nulla vitae elit libero_, a pharetra augue. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+
+_{{ footnote | toUpper }}_
+
+Tabula Rasa
+
+... and again Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Sed posuere consectetur est at lobortis. Nulla vitae elit libero, a pharetra augue. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.

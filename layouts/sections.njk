@@ -1,0 +1,19 @@
+{% extends "layout.njk" %}
+
+{% from "./sections/component.njk" import component %}
+
+{% block body %}
+  <section class="main-content">
+
+    {% for section in sections %}
+
+      {% set name = section.component %}
+      {% set params = section %}
+
+      {{ component(name, params) }}
+
+    {% else %}
+      <p class="error-message">There are no sections available</p>
+    {% endfor %}
+  </section>
+{% endblock %}
