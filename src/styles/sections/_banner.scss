@@ -1,0 +1,16 @@
+/**
+ * Page section Banner
+ */
+
+.section-banner {
+  padding-top: 0;
+  padding-bottom: 0;
+
+  &.paddingTop {
+    padding-top: 40px;
+  }
+
+  &.paddingBottom {
+    padding-bottom: 40px;
+  }
+}
