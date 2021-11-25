@@ -11,11 +11,10 @@ const paths = {
 
 // get fonts
 const processFonts = require('./gulp-tasks/get-google-fonts');
-
-
 // process styles 
 const processStyles = require('./gulp-tasks/process-styles');
-
+// process scripts
+const processScripts = require('./gulp-tasks/process-scripts');
 // clean build folder
 const cleanAssets = require('./gulp-tasks/clean');
 // Metalsmith build site process
@@ -47,7 +46,7 @@ function watchSite(done) {
 
     gulp.watch(
       'src/scripts/**/*.js',
-      gulp.series(metalsmith, reload)
+      gulp.series(processScripts, metalsmith, reload)
     );
     gulp.watch(
       'src/styles/**/*.scss',
@@ -63,6 +62,7 @@ function watchSite(done) {
 
 const buildSite = gulp.series(
   cleanAssets,
+  processScripts,
   processFonts,
   processStyles,
   metalsmith,

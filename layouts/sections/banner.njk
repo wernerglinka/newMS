@@ -1,4 +1,7 @@
 {% from "../partials/ctas.njk" import ctas %}
+{% from "../partials/responsive-image.njk" import responsiveImage %}
+
+{# this section receives props params and site #}
 
 <section class="section-banner {% if params.paddingTop %}paddingTop{% endif %} {% if params.paddingBottom %}paddingBottom{% endif %}">
   <div class="banner-content">
@@ -20,6 +23,14 @@
 
     </div>
     <!-- /.text-wrapper -->
+
+    <div class="media-wrapper">
+      {% if params.mediaType === "Image"%}
+        {% set image = params.image %}
+        {{ responsiveImage(image, site) }}
+      {% endif %}
+
+    </div>
   </div>
   <!-- /.banner-content -->
 </section>
