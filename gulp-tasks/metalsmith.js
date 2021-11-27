@@ -81,19 +81,20 @@ module.exports = function metalsmith(callback) {
       })
     )
 
+    
     // Show all metadata for each page in console
     // Used for Debug only
-    .use(monitor())
+    // .use(monitor())
 
     // Generate a metadata json file for each page
     // Used for Debug only
-    .use(
-      writeMetadata({
-        pattern: ['**/*.html'],
-        ignorekeys: ['next', 'contents', 'previous'],
-        bufferencoding: 'utf8',
-      })
-    )
+    //.use(
+    //  writeMetadata({
+    //    pattern: ['**/*.html'],
+    //    ignorekeys: ['next', 'contents', 'previous'],
+    //    bufferencoding: 'utf8',
+    //  })
+    //)
 
     .use(
       msif(!!util.env.linkcheck, () => {
