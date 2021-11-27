@@ -71,7 +71,6 @@ exports.default = gulp.series(
 );
 
 exports.buildProd = gulp.series(
-  cleanAssets,
   processScripts,
   processFonts,
   processStyles,
