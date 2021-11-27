@@ -60,7 +60,8 @@ function watchSite(done) {
   done();
 }
 
-const buildSite = gulp.series(
+
+exports.default = gulp.series(
   cleanAssets,
   processScripts,
   processFonts,
@@ -68,5 +69,11 @@ const buildSite = gulp.series(
   metalsmith,
   watchSite
 );
-exports.default = buildSite;
 
+exports.buildProd = gulp.series(
+  cleanAssets,
+  processScripts,
+  processFonts,
+  processStyles,
+  metalsmith
+);
