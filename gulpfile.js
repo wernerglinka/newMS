@@ -71,7 +71,8 @@ exports.default = gulp.series(
 );
 
 exports.buildProd = gulp.series(
-  processFonts,
+  cleanAssets,
+  processScripts,
   processStyles,
   metalsmith
 );
