@@ -1,7 +1,11 @@
 import debounce from "../utilities/debounce";
 
-const loadImage = ((entries) => {
+// images are loaded when they are visible in the viewport and updated when
+// the viewport width changes.
 
+const loadImage = ((entries) => {
+  // During initial page load the entries array contains all watched objects. The 
+  // isIntersecting property for the individual object indicates visibility.
   for (let entry of entries) {
     if ( entry.isIntersecting) {
       const thisWrapper = entry.target;
@@ -21,7 +25,7 @@ const loadImage = ((entries) => {
       // ...so we can assemble and replace the image src url
       thisImage.src = `${thisImagePrefix}${imageParams}/${thisImageSource}`;
       // once the hi-res image has been loaded, add done class to wrapper
-      // which will fade-in the hi-res image
+      // which will fade-in the hi-res image and fade-out the low-res image
       thisImage.onload = () => {
         thisWrapper.classList.add("done");
       };
