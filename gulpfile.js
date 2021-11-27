@@ -2,13 +2,6 @@ const gulp = require('gulp');
 const browserSync = require('browser-sync').create();
 const util = require('gulp-util');
 
-const paths = {
-  styles: {
-    src: "./styles/**/*.scss",
-    dest: "./assets/styles"
-  }
-}
-
 // get fonts
 const processFonts = require('./gulp-tasks/get-google-fonts');
 // process styles 
