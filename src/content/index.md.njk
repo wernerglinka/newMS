@@ -25,6 +25,7 @@ sections:
     backgroundColor: ""
     targetID: ""
     title: Banner Title
+    header: "h1"
     subTitle: Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
     hasCtas: true
     ctas:
@@ -73,6 +74,7 @@ sections:
     backgroundColor: ""
     targetID: ""
     title: Intro Title
+    header: "h2"
     subTitle: Intro sub title
     prose: |-
       Aenean lacinia bibendum nulla sed consectetur. Nulla vitae elit libero, a pharetra augue. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla. **Donec ullamcorper nulla non metus auctor fringilla**. Nullam quis risus eget urna mollis ornare vel eu leo.
@@ -85,42 +87,73 @@ sections:
         isButton: true
         buttonStyle: "primary"
 
-  - component: banner
+  - component: intro
     disabled: false
     animateSection: false
     inContainer: true
     marginTop: false
-    marginBottom: true
+    marginBottom: false
     paddingTop: false
-    paddingBottom: true
+    paddingBottom: false
     backgroundColor: ""
     targetID: ""
-    title: Banner Title
-    subTitle: Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
-    hasCtas: true
+    title: This is a media component !
+    header: "h2"
+    subTitle: ""
+    prose: ""
+    hasCtas: false
     ctas:
-      - url: "/other-page/"
-        label: Other Page
+      - url: ""
+        label: ""
         isExternal: false
         isButton: true
         buttonStyle: "primary"
-      - url: ""
-        label: "Play Video"
-        isExternal: false
+  
+  - component: media
+    animateSection: true
+    inContainer: true
+    hasBackground: false
+    bgColor: ""
+    bgIsDark: false
+    marginTop: false
+    marginBottom: true
+    paddingTop: false
+    paddingBottom: false
+    reverse: true
+    title: "What is a media component ?"
+    header: "h3"
+    subTitle: "Indeed, what is it?"
+    prose: |-
+      The Media Object pattern is: image thingy on the left, heading and text on the right.
+
+      That’s what [Nicole Sullivan](http://www.stubbornella.org/content/2010/06/25/the-media-object-saves-hundreds-of-lines-of-code/) called it and the [name stuck](https://getbootstrap.com/docs/4.0/layout/media-object/). It’s a pretty simple pattern, but like all things web design, it can be done many ways.
+
+      In this implementation the image thingy can be
+
+      - an image
+      - a video
+      - an animated Lottie svg
+      - an icon
+      - an audio player
+
+    hasCtas: true
+    ctas:
+      - label: "Another CTA"
+        url: "/other-page/"
+        isVideoTrigger: false
         isButton: false
-        buttonStyle: "primary"
-        isVideoTrigger: true
+        buttonStyle: ""
+        isExternal: false
     mediaType: Image
     video:
       src: youtube
-      id: "IadsLclBOS8"
-      tn: "v1636656059/gatsby4mdx/one-tree_nnl9ts.jpg"
-      aspectRatio: "56.25"
+      id: ""
+      tn: ""
+      aspectRatio: ""
     image:
-      src: "v1636656058/gatsby4mdx/another-tree_fl0vki.jpg"
-      alt: "tree"
-      aspectRatio: "56.25"
-      marker: "2"
+      src: "v1636656058/gatsby4mdx/trees_ovi9xa.jpg"
+      alt: "a tree"
+      aspectRatio: "62.5"
     lottieData:
       src: ""
       control:
@@ -133,42 +166,88 @@ sections:
       ogg: ""
       mpeg: ""
 
-  - component: banner
-    disabled: false
-    animateSection: false
+
+  - component: media
+    animateSection: true
     inContainer: true
-    marginTop: false
+    hasBackground: false
+    bgColor: ""
+    bgIsDark: false
+    marginTop: true
     marginBottom: true
-    paddingTop: false
+    paddingTop: true
     paddingBottom: true
-    backgroundColor: ""
-    targetID: ""
-    title: Banner Title
-    subTitle: Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
+    reverse: false
+    title: "Another Media component"
+    header: "h3"
+    subTitle: ""
+    prose: |-
+        In this example the order of image and text have been reversed, instead of an image we show an icon and a cta is diplayed at the text bottom
     hasCtas: true
     ctas:
-      - url: "/other-page/"
-        label: Other Page
-        isExternal: false
-        isButton: true
-        buttonStyle: "primary"
-      - url: ""
-        label: "Play Video"
-        isExternal: false
+      - label: "Let's go shopping"
+        url: "https://amazon.com"
+        isVideoTrigger: false
         isButton: false
-        buttonStyle: "primary"
-        isVideoTrigger: true
+        buttonStyle: ""
+        isExternal: true
+    mediaType: Icon
+    video:
+      src: ""
+      id: ""
+      tn: ""
+      aspectRatio: ""
+    image:
+      src: ""
+      alt: ""
+      aspectRatio: ""
+    lottieData:
+      src: ""
+      control:
+        autoplay: true
+        loop: true
+    icon: cleanIndustry
+    audio:
+      bgImage: ""
+      aspectRatio: ""
+      ogg: ""
+      mpeg: ""
+
+  - component: media
+    animateSection: true
+    inContainer: true
+    hasBackground: false
+    bgColor: ""
+    bgIsDark: false
+    marginTop: true
+    marginBottom: true
+    paddingTop: false
+    paddingBottom: false
+    reverse: true
+    title: "media component below the fold ?"
+    header: "h3"
+    subTitle: ""
+    prose: |-
+        This media component is located under fold to test progressive image loading
+
+    hasCtas: false
+    ctas:
+      - label: ""
+        url: ""
+        isVideoTrigger: false
+        isButton: false
+        buttonStyle: ""
+        isExternal: false
     mediaType: Image
     video:
       src: youtube
-      id: "IadsLclBOS8"
-      tn: "v1636656059/gatsby4mdx/one-tree_nnl9ts.jpg"
-      aspectRatio: "56.25"
+      id: ""
+      tn: ""
+      aspectRatio: ""
     image:
-      src: "v1636656059/gatsby4mdx/one-tree_nnl9ts.jpg"
-      alt: "tree"
-      aspectRatio: "56.25"
-      marker: "1"
+      src: "v1636656058/gatsby4mdx/trees-fog_dru2h3.jpg"
+      alt: "a tree"
+      aspectRatio: "62.5"
     lottieData:
       src: ""
       control:
@@ -181,42 +260,41 @@ sections:
       ogg: ""
       mpeg: ""
 
-  - component: banner
-    disabled: false
-    animateSection: false
+  - component: media
+    animateSection: true
     inContainer: true
-    marginTop: false
+    hasBackground: false
+    bgColor: ""
+    bgIsDark: false
+    marginTop: true
     marginBottom: true
     paddingTop: false
-    paddingBottom: true
-    backgroundColor: ""
-    targetID: ""
-    title: Banner Title
-    subTitle: Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
-    hasCtas: true
+    paddingBottom: false
+    reverse: false
+    title: "We go further under the fold"
+    header: "h3"
+    subTitle: ""
+    prose: |-
+        This media component is located under fold to test progressive image loading
+
+    hasCtas: false
     ctas:
-      - url: "/other-page/"
-        label: Other Page
-        isExternal: false
-        isButton: true
-        buttonStyle: "primary"
-      - url: ""
-        label: "Play Video"
-        isExternal: false
+      - label: ""
+        url: ""
+        isVideoTrigger: false
         isButton: false
-        buttonStyle: "primary"
-        isVideoTrigger: true
+        buttonStyle: ""
+        isExternal: false
     mediaType: Image
     video:
       src: youtube
-      id: "IadsLclBOS8"
-      tn: "v1636656059/gatsby4mdx/one-tree_nnl9ts.jpg"
-      aspectRatio: "56.25"
+      id: ""
+      tn: ""
+      aspectRatio: ""
     image:
-      src: "v1636656058/gatsby4mdx/another-tree_fl0vki.jpg"
-      alt: "tree"
+      src: "v1636656059/gatsby4mdx/trees-water_fe7obz.jpg"
+      alt: "a tree"
       aspectRatio: "56.25"
-      marker: "2"
     lottieData:
       src: ""
       control:
@@ -229,4 +307,50 @@ sections:
       ogg: ""
       mpeg: ""
 
+  - component: media
+    animateSection: true
+    inContainer: true
+    hasBackground: false
+    bgColor: ""
+    bgIsDark: false
+    marginTop: true
+    marginBottom: true
+    paddingTop: false
+    paddingBottom: false
+    reverse: true
+    title: "We go even further under the fold"
+    header: "h3"
+    subTitle: ""
+    prose: |-
+        This media component is located under fold to test progressive image loading
+
+    hasCtas: false
+    ctas:
+      - label: ""
+        url: ""
+        isVideoTrigger: false
+        isButton: false
+        buttonStyle: ""
+        isExternal: false
+    mediaType: Image
+    video:
+      src: youtube
+      id: ""
+      tn: ""
+      aspectRatio: ""
+    image:
+      src: "v1636656058/gatsby4mdx/many-tree-trunks_h0eowk.jpg"
+      alt: "a tree"
+      aspectRatio: "56.25"
+    lottieData:
+      src: ""
+      control:
+        autoplay: true
+        loop: true
+    icon: ""
+    audio:
+      bgImage: ""
+      aspectRatio: ""
+      ogg: ""
+      mpeg: ""
 ---

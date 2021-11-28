@@ -18,10 +18,28 @@ html {
 
 ul,
 ol {
-  margin: 0;
+  margin: 0 0 0 40px;
   padding: 0;
 }
 .container {
   max-width: 1200px;
   margin: 0 auto;
+}
+
+.columns {
+  display: flex;
+  justify-content: flex-start;
+
+  .prose {
+    padding-right: 50px;
+  }
+
+  &.reverse {
+    flex-direction: row-reverse;
+
+    .prose {
+      padding-right: 0;
+      padding-left: 50px;
+    }
+  }
 }

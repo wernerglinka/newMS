@@ -1,7 +1,7 @@
 {% macro ctas(info) %}
-  <div class="ctas-wrapper">
+  <div class="ctas">
     {% for cta in info.ctas %}
-      
+
       {# special case: a CTA may be used to trigger video modal #}
       {% if cta.isVideoTrigger %}
         {% if cta.isButton %}
@@ -12,26 +12,26 @@
           <a class="video-link js-video-button">
             {{ cta.label }}
           </a>
-        {% endif%}
+          {% endif%}
 
-      {% else %}
-
-      {# regular case: link is either a button or a link and either an internal or external link #}  
-        {% if cta.isButton %}
-          {% if cta.isExternal %}
-            <a class="cta-button {{ cta.buttonStyle }}" href="{{cta.url}}" target="_blank" rel="noopener noreferrer">{{ cta.label}}</a>
-          {% else %}
-            <a class="cta-button {{ cta.buttonStyle }}" href="{{cta.url}}">{{ cta.label}}</a>
-          {% endif %}
         {% else %}
-          {% if cta.isExternal %}
-            <a class="cta-link" href="{{cta.url}}" target="_blank" rel="noopener noreferrer">{{ cta.label}}</a>
-          {% else %}
-            <a class="cta-link" href="{{cta.url}}">{{ cta.label}}</a>
-          {% endif %}
-        {% endif %}
 
-      {% endif%}
-    {% endfor %}
-  </div>
-{% endmacro %}
+          {# regular case: link is either a button or a link and either an internal or external link #}
+          {% if cta.isButton %}
+            {% if cta.isExternal %}
+              <a class="cta-button {{ cta.buttonStyle }}" href="{{cta.url}}" target="_blank" rel="noopener noreferrer">{{ cta.label}}</a>
+            {% else %}
+              <a class="cta-button {{ cta.buttonStyle }}" href="{{cta.url}}">{{ cta.label}}</a>
+            {% endif %}
+          {% else %}
+            {% if cta.isExternal %}
+              <a class="cta-link" href="{{cta.url}}" target="_blank" rel="noopener noreferrer">{{ cta.label}}</a>
+            {% else %}
+              <a class="cta-link" href="{{cta.url}}">{{ cta.label}}</a>
+            {% endif %}
+          {% endif %}
+
+          {% endif%}
+        {% endfor %}
+      </div>
+    {% endmacro %}

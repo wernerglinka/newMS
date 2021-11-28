@@ -1,11 +1,12 @@
 {% from "../partials/ctas.njk" import ctas %}
 {% from "../partials/responsive-image.njk" import responsiveImage %}
 {% from "../partials/text.njk" import text %}
+{% from "../partials/icon.njk" import icon %}
 
 {# this section receives props params and site #}
 
-<section class="section-banner {% if params.paddingTop %}paddingTop{% endif %} {% if params.paddingBottom %}paddingBottom{% endif %}">
-  <div class="content columns">
+<section class="section-media {% if params.paddingTop %}paddingTop{% endif %} {% if params.paddingBottom %}paddingBottom{% endif %}">
+  <div class="content columns {% if params.reverse %}reverse{% endif %}">
     {% set info = params %}
 
     <div class="prose">
@@ -22,6 +23,12 @@
         {# site is in scope, was passed via the component macro #}
         {{ responsiveImage(image, site) }}
       {% endif %}
+
+      {% if params.mediaType === "Icon"%}
+        {% set iconSource = params.icon %}
+        {{ icon(iconSource) }}
+      {% endif %}
+
     </div>
   </div>
 </section>

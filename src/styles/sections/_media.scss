@@ -2,7 +2,7 @@
  * Page section Banner
  */
 
-.section-banner {
+.section-media {
   padding-top: 0;
   padding-bottom: 0;
 
@@ -23,9 +23,26 @@
 
     > div {
       flex: 0 0 50%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+
+      button {
+        display: block;
+        width: 100%;
+      }
     }
+
+    h1 {
+      margin-bottom: 30px;
+    }
+
+    p {
+      margin: 0 0 30px;
+    }
+  }
+
+  .icon-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 }
