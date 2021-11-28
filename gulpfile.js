@@ -2,13 +2,6 @@ const gulp = require('gulp');
 const browserSync = require('browser-sync').create();
 const util = require('gulp-util');
 
-const paths = {
-  styles: {
-    src: "./styles/**/*.scss",
-    dest: "./assets/styles"
-  }
-}
-
 // get fonts
 const processFonts = require('./gulp-tasks/get-google-fonts');
 // process styles 
@@ -60,7 +53,8 @@ function watchSite(done) {
   done();
 }
 
-const buildSite = gulp.series(
+
+exports.default = gulp.series(
   cleanAssets,
   processScripts,
   processFonts,
@@ -68,5 +62,10 @@ const buildSite = gulp.series(
   metalsmith,
   watchSite
 );
-exports.default = buildSite;
 
+exports.buildProd = gulp.series(
+  cleanAssets,
+  processScripts,
+  processStyles,
+  metalsmith
+);
