@@ -1,0 +1,13 @@
+.animation {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  lottie-player {
+    max-width: 400px;
+    max-height: 400px;
+    width: 100%;
+    height: auto;
+  }
+}

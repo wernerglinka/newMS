@@ -29,6 +29,12 @@
         {{ icon(iconSource) }}
       {% endif %}
 
+      {% if params.mediaType === "Lottie"%}
+        <div class="animation">
+          <lottie-player src="{{ params.lottieData.src}}" background="transparent"  speed="1" loop autoplay></lottie-player>
+        </div>
+      {% endif %}
+
     </div>
   </div>
 </section>
