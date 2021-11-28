@@ -1,13 +1,3 @@
 <section class="section-intro {% if params.paddingTop %}paddingTop{% endif %} {% if params.paddingBottom %}paddingBottom{% endif %}">
-  
-  {% if params.title %}
-    <h2>{{ params.title }}</h2>
-  {% endif %}
-  {% if params.subTitle %}
-    <p>{{ params.subTitle }}</p>
-  {% endif %}
-  {% if params.prose %}
-    <p>{{ params.prose | mdToHTML | safe }}</p>
-  {% endif %}
-  
+  {% include "../partials/text.njk" %}
 </section>
