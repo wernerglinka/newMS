@@ -7,7 +7,7 @@ const processFonts = require('./gulp-tasks/get-google-fonts');
 // process styles 
 const processStyles = require('./gulp-tasks/process-styles');
 // process scripts
-//const processScripts = require('./gulp-tasks/process-scripts');
+const processScripts = require('./gulp-tasks/process-scripts');
 // clean build folder
 const cleanAssets = require('./gulp-tasks/clean');
 // Metalsmith build site process
@@ -37,10 +37,10 @@ function watchSite(done) {
       },
     });
 
-    //gulp.watch(
-    //  'src/scripts/**/*.js',
-    //  gulp.series(processScripts, metalsmith, reload)
-    //);
+    gulp.watch(
+      'src/scripts/**/*.js',
+      gulp.series(processScripts, metalsmith, reload)
+    );
     gulp.watch(
       'src/styles/**/*.scss',
       gulp.series(processStyles,metalsmith, reload)
@@ -56,7 +56,7 @@ function watchSite(done) {
 
 exports.default = gulp.series(
   cleanAssets,
-  //processScripts,
+  processScripts,
   processFonts,
   processStyles,
   metalsmith,
@@ -65,7 +65,7 @@ exports.default = gulp.series(
 
 exports.buildProd = gulp.series(
   cleanAssets,
-  //processScripts,
+  processScripts,
   processStyles,
   metalsmith
 );
