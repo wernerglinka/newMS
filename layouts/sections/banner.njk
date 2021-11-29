@@ -1,6 +1,7 @@
 {% from "../partials/ctas.njk" import ctas %}
 {% from "../partials/responsive-image.njk" import responsiveImage %}
 {% from "../partials/text.njk" import text %}
+{% from "../partials/video.njk" import video %}
 
 {# this section receives props params and site #}
 
@@ -21,6 +22,11 @@
         {% set image = params.image %}
         {# site is in scope, was passed via the component macro #}
         {{ responsiveImage(image, site) }}
+      {% endif %}
+
+      {% if params.mediaType === "Video"%}
+        {% set videoData = params.video %}
+        {{ video(videoData, site) }}
       {% endif %}
     </div>
   </div>

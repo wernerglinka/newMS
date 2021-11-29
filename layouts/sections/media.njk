@@ -2,6 +2,7 @@
 {% from "../partials/responsive-image.njk" import responsiveImage %}
 {% from "../partials/text.njk" import text %}
 {% from "../partials/icon.njk" import icon %}
+{% from "../partials/video.njk" import video %}
 
 {# this section receives props params and site #}
 
@@ -33,6 +34,11 @@
         <div class="animation">
           <lottie-player src="{{ params.lottieData.src}}" background="transparent"  speed="1" loop autoplay></lottie-player>
         </div>
+      {% endif %}
+
+      {% if params.mediaType === "Video"%}
+        {% set video = params.video %}
+        {{ video(videoData, site) }}
       {% endif %}
 
     </div>

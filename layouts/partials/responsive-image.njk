@@ -1,5 +1,5 @@
 {% macro responsiveImage(image, siteMeta) %}
-  <div class="responsive-wrapper js-progressive-image-wrapper" style="padding-bottom:{{ image.aspectRatio}}%;" marker="{{ image.marker }}">
+  <div class="responsive-wrapper js-progressive-image-wrapper" style="padding-bottom:{{ image.aspectRatio}}%;" >
 
     {# assemble the image url #}
     {% set source = siteMeta.imagePrefix ~ image.src %}
