@@ -1,7 +1,41 @@
-<header>
-  <div class="container">
-    <h1 class="page-header">{{ header_title }}</h1>
-    <p>{{ header_text }}</p>
+{% from "../partials/icon.njk" import icon %}
+
+<div class="header-wrapper">
+  <header>
+    <div class="container">
+      <div id="overlay" class="js-overlay"></div>
+      <div id="brand">
+        {% set iconSource = "logo" %}
+        {% if isHome %}
+          {{ icon(iconSource) }}
+        {% else %}
+          <a href="/">{{ icon(iconSource) }}</a>
+        {% endif %}
+      </div>
+
+      <div id="main-menu" class="js-main-menu">
+        <ul>
+          {% for menuItem in data.nav.menu %}
+            <li>
+              {% set iconSource = menuItem.icon %}
+              {{ icon(iconSource) }}
+              <div>
+                {% if menuItem.isExternal %}
+                  <a href={{ menuItem.url}} target="_blank" rel="noopener noreferrer">{{ menuItem.label }}</a>
+                {% else %}
+                  <a href={{ menuItem.url}}>{{ menuItem.label }}</a>
+                {% endif %}
+                <p>{{ menuItem.description }}</p>
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <button id="hamburger" class="js-hamburger">
+        <span></span>
+      </button>
+    </div>
   </div>
 </header>
-<hr>
+</div>

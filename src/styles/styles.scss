@@ -1,6 +1,8 @@
 @import "./base";
 @import "./typography";
 
+@import "./sections/header";
+@import "./sections/main-menu";
 @import "./sections/section-wrapper";
 @import "./sections/banner";
 @import "./sections/media";
@@ -9,3 +11,6 @@
 @import "./sections/particles/responsive-image";
 @import "./sections/particles/animations";
 @import "./sections/particles/video";
+@import "./sections/particles/overlay";
+@import "./sections/particles/brand";
+@import "./sections/particles/hamburger";

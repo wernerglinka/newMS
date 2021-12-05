@@ -1,3 +1,26 @@
 {
-  "title": "Navigation"
+  "menu": [
+    {
+      "icon": "feather",
+      "label": "Other Page",
+      "description": "Maecenas sed diam eget risus varius blandit sit amet non magna",
+      "url": "/other-page",
+      "submenuID": "",
+      "submenuClass": "",
+      "isButton": false,
+      "buttonClass": "",
+      "isExternal": false
+    },
+    {
+      "icon": "database",
+      "label": "So Important",
+      "description": "Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor",
+      "url": "https://apple.com",
+      "submenuID": "",
+      "submenuClass": "",
+      "isButton": false,
+      "buttonClass": "primary",
+      "isExternal": true
+    }
+  ]
 }

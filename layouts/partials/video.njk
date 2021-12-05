@@ -1,8 +1,8 @@
 {% from "./responsive-image.njk" import responsiveImage %}
 
 {% macro video(videoData, siteMeta) %}
-  <div class="video js-video-wrapper"  >
-    <button class="js-play-button" >
+  <div class="video"  >
+    <button class="js-modal-video" data-videoid={{ videoData.id}} data-videosrc={{ videoData.src }}>
       <div class="play-button"></div>
       {% set image = {
         src: videoData.tn,
@@ -11,10 +11,6 @@
       } %}
       {{ responsiveImage(image, siteMeta) }}
     </button>
-    <div class="overlay">
-      <div class="overlay-content" data-video-id={{ videoData.id}} data-video-src={{ video.src }} ></div>
-    </div>
-
   </div>
 
 {% endmacro %}

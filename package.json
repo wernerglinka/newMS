@@ -16,6 +16,7 @@
   "dependencies": {
     "@dogstudio/highway": "^2.2.1",
     "@metalsmith/permalinks": "^2.3.0",
+    "animejs": "^3.2.1",
     "autoprefixer": "^10.4.0",
     "browser-sync": "^2.27.7",
     "cssnano": "^5.0.11",
