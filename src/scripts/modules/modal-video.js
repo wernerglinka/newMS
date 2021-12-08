@@ -2,7 +2,7 @@
 // useful tutorial: https://tutorialzine.com/2015/08/how-to-control-youtubes-video-player-with-javascript
 
 // implements the YouTube iFrame API to display multiple videos - one-at-the-time - in a modal overlay.
-// page must have body class hasVideo
+// page must have video links 
 // page may have multiple video links "<a class="modal-video" data-video-link="https://youtu.be/30sorJ54rdM" data-video-id="30sorJ54rdM"  data-video-attr="" disabled>Test Video Link 1</a>"
 // initially, video links do not have "href" attribute but have attribute "disabled"
 // once the api has been loaded and is ready to play videos, all links are activated by adding "href" attribute and removing "disabled" attribute
@@ -11,8 +11,9 @@
 // when closing the overlay, the video sound is faded out prior to videoPause(). Do not use videoStop() as that produces strange transitions, e.g. before a
 // new video starts, a few frames of the prior video might be visible. API docs recommend to use videoPause().
 
+
 const modalVideo = (function($, undefined) {
-  const modalVideoTriggers = $('.modal-video');
+  const modalVideoTriggers = $('.js-modal-video');
   let player;
   let videoOverlay;
 
@@ -23,15 +24,15 @@ const modalVideo = (function($, undefined) {
 
     modalVideoTriggers.each(function() {
       const thisTrigger = $(this);
-      const requestedVideoID = thisTrigger.data('video-id');
-      const startTime = thisTrigger.data('start-time');
-      const endTime = thisTrigger.data('end-time');
+      const requestedVideoID = thisTrigger.data('videoid');
+      //const startTime = thisTrigger.data('start-time');
+      //const endTime = thisTrigger.data('end-time');
 
       // turn data-video-link into a href attribute and remove disabled attribute
-      thisTrigger
-        .attr('href', thisTrigger.data('video-link'))
-        .removeAttr('data-video-link')
-        .removeAttr('disabled');
+      //thisTrigger
+      //  .attr('href', thisTrigger.data('video-link'))
+      //  .removeAttr('data-video-link')
+      //  .removeAttr('disabled');
 
       thisTrigger.on('click', e => {
         e.preventDefault();
@@ -47,8 +48,8 @@ const modalVideo = (function($, undefined) {
         } else {
           player.loadVideoById({
             videoId: requestedVideoID,
-            startSeconds: startTime || null,
-            endSeconds: endTime || null,
+            //startSeconds: startTime || null,
+            //endSeconds: endTime || null,
           });
         }
         // we might have muted a previous video. set the default level
@@ -104,35 +105,36 @@ const modalVideo = (function($, undefined) {
   };
 
   const init = function() {
-    if (!$('body').hasClass('hasVideo')) {
+    // if no video trigger links on page return
+    if (!$('.js-video-trigger')) {
       return;
     }
 
     // initialize all video players on a page
     // videoAPIReady is a defered jQuery object for when the Youtube API has been loaded
-    videoAPIReady.then(() => {
-      // $(window).on('videoAPIReady', () => {
+    window.videoAPIReady.then(() => {
       // create an video overlay
       $('body').append(`
-              <div id="video-overlay" class="video-overlay">
-                  <i class="icon icon-close"></i>
-                  <div class="responsive-wrapper">
-                      <div class="video-container">
-                          <div id="ytvideo"></div>
-                      </div>
-                  </div>
-              </div>`);
+        <div id="video-overlay" class="js-video-overlay">
+            <span class="icon icon-close">CLOSE</span>
+            <div class="responsive-wrapper">
+                <div class="video-container">
+                    <div id="ytvideo"></div>
+                </div>
+            </div>
+        </div>
+      `);
 
       videoOverlay = $('#video-overlay');
-      const videoID = modalVideoTriggers.eq(0).data('video-id'); // the first video link
-      const startTime = modalVideoTriggers.eq(0).data('start-time');
-      const endTime = modalVideoTriggers.eq(0).data('end-time');
+      const videoID = modalVideoTriggers.eq(0).data('videoid'); // the first video link
+      //const startTime = modalVideoTriggers.eq(0).data('start-time');
+      //const endTime = modalVideoTriggers.eq(0).data('end-time');
 
       // reference https://developers.google.com/youtube/player_parameters?playerVersion=HTML5
       const playerVars = {
         autoplay: 0,
-        start: startTime || null, // if no start or end time is specified go trom 0 to end
-        end: endTime || null, // start/stop via js commands
+        //start: startTime || null, // if no start or end time is specified go trom 0 to end
+        //end: endTime || null, // start/stop via js commands
         controls: 0, // show video controls
         enablejsapi: 1, // enable the js api so we can control then player with js
         wmode: 'opaque', // allow other elements to cover video, e.g. dropdowns or pop-ups
