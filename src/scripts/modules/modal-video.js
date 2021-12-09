@@ -1,17 +1,3 @@
-// reference: https://developers.google.com/youtube/iframe_api_reference
-// useful tutorial: https://tutorialzine.com/2015/08/how-to-control-youtubes-video-player-with-javascript
-
-// implements the YouTube iFrame API to display multiple videos - one-at-the-time - in a modal overlay.
-// page must have video links 
-// page may have multiple video links "<a class="modal-video" data-video-link="https://youtu.be/30sorJ54rdM" data-video-id="30sorJ54rdM"  data-video-attr="" disabled>Test Video Link 1</a>"
-// initially, video links do not have "href" attribute but have attribute "disabled"
-// once the api has been loaded and is ready to play videos, all links are activated by adding "href" attribute and removing "disabled" attribute
-// the video object is given the first videoID. Videos will be played, after the overlay is active, by calling either videoPlay() when the video has been loaded
-// or by loadVideoById() when a new video is requested
-// when closing the overlay, the video sound is faded out prior to videoPause(). Do not use videoStop() as that produces strange transitions, e.g. before a
-// new video starts, a few frames of the prior video might be visible. API docs recommend to use videoPause().
-
-
 const modalVideo = (function($, undefined) {
   const modalVideoTriggers = $('.js-modal-video');
   let player;
@@ -28,6 +14,7 @@ const modalVideo = (function($, undefined) {
       //const startTime = thisTrigger.data('start-time');
       //const endTime = thisTrigger.data('end-time');
 
+      // inline links
       // turn data-video-link into a href attribute and remove disabled attribute
       //thisTrigger
       //  .attr('href', thisTrigger.data('video-link'))
