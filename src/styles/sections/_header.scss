@@ -1,13 +1,13 @@
 .header-wrapper {
   position: relative;
-  z-index: 100002;
+  z-index: 1000;
   height: 90px;
 
   header {
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 10003;
+    z-index: 1001;
     width: 100%;
     height: 90px;
     padding: 20px 0;

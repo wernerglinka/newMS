@@ -5,8 +5,8 @@ const modalVideo = (function($, undefined) {
 
   // initialize all video links when the player is ready
   const initVideoLinks = function() {
-    videoOverlay = $('#video-overlay');
-    const closeVideoOverlay = videoOverlay.find('.icon-close');
+    const videoOverlay = document.getElementById("video-overlay");
+    const closeVideoOverlay = videoOverlay.querySelector('.close');
 
     modalVideoTriggers.each(function() {
       const thisTrigger = $(this);
@@ -24,9 +24,16 @@ const modalVideo = (function($, undefined) {
       thisTrigger.on('click', e => {
         e.preventDefault();
         e.stopPropagation();
-        videoOverlay.fadeIn(400);
-        $('body').addClass('modalActive');
 
+        // fade in the overlay
+        videoOverlay.addEventListener('animationend', () => {
+          videoOverlay.classList.add('is-open');
+          videoOverlay.classList.remove('fadein');
+        }, { once: true });
+        videoOverlay.classList.add('fadein');
+
+        document.body.classList.add('modalActive');
+        
         // load the appropriate video ID
         // if the requested videoID is equal to what the player has already loaded
         // then just play the video else load the new video and then play it
@@ -44,7 +51,8 @@ const modalVideo = (function($, undefined) {
       });
     });
 
-    closeVideoOverlay.on('click', () => {
+    //closeVideoOverlay.on('click', () => {
+      closeVideoOverlay.addEventListener("click", () => {
       // fadeout sound as we close the overlay
       let currentVolume = player.getVolume();
       const fadeout = setInterval(() => {
@@ -57,8 +65,15 @@ const modalVideo = (function($, undefined) {
         currentVolume -= 5;
         player.setVolume(currentVolume);
       }, 100);
-      videoOverlay.fadeOut();
-      $('body').removeClass('modalActive');
+      
+      //videoOverlay.fadeOut();
+      videoOverlay.addEventListener('animationend', () => {
+        videoOverlay.classList.remove('is-open');
+        videoOverlay.classList.remove('fadeout');
+      }, { once: true });
+      videoOverlay.classList.add('fadeout')
+      
+      document.body.classList.remove('modalActive');
     });
   };
 
@@ -103,7 +118,7 @@ const modalVideo = (function($, undefined) {
       // create an video overlay
       $('body').append(`
         <div id="video-overlay" class="js-video-overlay">
-            <span class="icon icon-close">CLOSE</span>
+            <span class="close">[Close]</span>
             <div class="responsive-wrapper">
                 <div class="video-container">
                     <div id="ytvideo"></div>
