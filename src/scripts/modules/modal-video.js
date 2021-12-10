@@ -1,27 +1,19 @@
-const modalVideo = (function($, undefined) {
-  const modalVideoTriggers = $('.js-modal-video');
+const modalVideo = (function() {
+  const modalVideoTriggers = document.querySelectorAll('.js-modal-video');
   let player;
-  let videoOverlay;
 
-  // initialize all video links when the player is ready
+  // initialize all video links
   const initVideoLinks = function() {
     const videoOverlay = document.getElementById("video-overlay");
     const closeVideoOverlay = videoOverlay.querySelector('.close');
 
-    modalVideoTriggers.each(function() {
-      const thisTrigger = $(this);
-      const requestedVideoID = thisTrigger.data('videoid');
-      //const startTime = thisTrigger.data('start-time');
-      //const endTime = thisTrigger.data('end-time');
+    modalVideoTriggers.forEach(function(thisTrigger) {
+      const requestedVideoID = thisTrigger.dataset.videoid;
+      const startTime = thisTrigger.dataset.startTime;
+      const endTime = thisTrigger.dataset.endTime;
 
-      // inline links
-      // turn data-video-link into a href attribute and remove disabled attribute
-      //thisTrigger
-      //  .attr('href', thisTrigger.data('video-link'))
-      //  .removeAttr('data-video-link')
-      //  .removeAttr('disabled');
-
-      thisTrigger.on('click', e => {
+      // listen for clicks on each link
+      thisTrigger.addEventListener('click', e => {
         e.preventDefault();
         e.stopPropagation();
 
@@ -32,18 +24,20 @@ const modalVideo = (function($, undefined) {
         }, { once: true });
         videoOverlay.classList.add('fadein');
 
+        // prevent scrolling under the overlay
         document.body.classList.add('modalActive');
         
+        // we are using the same player for all videos
         // load the appropriate video ID
-        // if the requested videoID is equal to what the player has already loaded
-        // then just play the video else load the new video and then play it
+        // check whether the requested videoID is equal to what the player has already loaded
+        // if not load new video, otherwise play existing video
         if (requestedVideoID === player.getVideoEmbedCode()) {
           player.playVideo();
         } else {
           player.loadVideoById({
             videoId: requestedVideoID,
-            //startSeconds: startTime || null,
-            //endSeconds: endTime || null,
+            startSeconds: startTime || null,
+            endSeconds: endTime || null,
           });
         }
         // we might have muted a previous video. set the default level
@@ -51,8 +45,8 @@ const modalVideo = (function($, undefined) {
       });
     });
 
-    //closeVideoOverlay.on('click', () => {
-      closeVideoOverlay.addEventListener("click", () => {
+    // close video overlay when close link is clicked
+    closeVideoOverlay.addEventListener("click", () => {
       // fadeout sound as we close the overlay
       let currentVolume = player.getVolume();
       const fadeout = setInterval(() => {
@@ -66,19 +60,21 @@ const modalVideo = (function($, undefined) {
         player.setVolume(currentVolume);
       }, 100);
       
-      //videoOverlay.fadeOut();
+      // fadeout the overlay
       videoOverlay.addEventListener('animationend', () => {
         videoOverlay.classList.remove('is-open');
         videoOverlay.classList.remove('fadeout');
       }, { once: true });
       videoOverlay.classList.add('fadeout')
       
+      // allow scrolling again
       document.body.classList.remove('modalActive');
     });
   };
 
+  // control player by events like end of play
   const onPlayerStateChange = function(event) {
-    videoOverlay = $('#video-overlay');
+    const videoOverlay = document.getElementById("video-overlay");
 
     // player states
     // "unstarted"               = -1
@@ -96,7 +92,13 @@ const modalVideo = (function($, undefined) {
         break;
 
       case YT.PlayerState.ENDED:
-        videoOverlay.fadeOut();
+        videoOverlay.addEventListener('animationend', () => {
+          videoOverlay.classList.remove('is-open');
+          videoOverlay.classList.remove('fadeout');
+        }, { once: true });
+        videoOverlay.classList.add('fadeout')
+        
+        document.body.classList.remove('modalActive');
         break;
 
       case YT.PlayerState.CUED:
@@ -108,15 +110,15 @@ const modalVideo = (function($, undefined) {
 
   const init = function() {
     // if no video trigger links on page return
-    if (!$('.js-video-trigger')) {
+    if (document.querySelectorAll('.js-modal-video').length < 1) {
       return;
     }
 
     // initialize all video players on a page
-    // videoAPIReady is a defered jQuery object for when the Youtube API has been loaded
+    // videoAPIReady is a defered javascript object for when the Youtube API has been loaded
     window.videoAPIReady.then(() => {
-      // create an video overlay
-      $('body').append(`
+      // create an video overlay and add to DOM
+      const newVideoOverlay = `
         <div id="video-overlay" class="js-video-overlay">
             <span class="close">[Close]</span>
             <div class="responsive-wrapper">
@@ -125,19 +127,19 @@ const modalVideo = (function($, undefined) {
                 </div>
             </div>
         </div>
-      `);
+      `;
+      document.body.insertAdjacentHTML('beforeend', newVideoOverlay);
 
-      videoOverlay = $('#video-overlay');
-      const videoID = modalVideoTriggers.eq(0).data('videoid'); // the first video link
-      //const startTime = modalVideoTriggers.eq(0).data('start-time');
-      //const endTime = modalVideoTriggers.eq(0).data('end-time');
+      const videoID = modalVideoTriggers[0].dataset.videoid;
+      const startTime = modalVideoTriggers[0].dataset.startTime;
+      const endTime = modalVideoTriggers[0].dataset.endTime;
 
       // reference https://developers.google.com/youtube/player_parameters?playerVersion=HTML5
       const playerVars = {
         autoplay: 0,
-        //start: startTime || null, // if no start or end time is specified go trom 0 to end
-        //end: endTime || null, // start/stop via js commands
-        controls: 0, // show video controls
+        start: startTime || null, // if no start or end time is specified go trom 0 to end
+        end: endTime || null, // start/stop via js commands
+        controls: 1, // show video controls
         enablejsapi: 1, // enable the js api so we can control then player with js
         wmode: 'opaque', // allow other elements to cover video, e.g. dropdowns or pop-ups
         origin: window.location.origin, // prevent "Failed to execute 'postMessage' on 'DOMWindow'" error
@@ -159,6 +161,6 @@ const modalVideo = (function($, undefined) {
   return {
     init,
   };
-})(jQuery);
+})();
 
 export default modalVideo;

@@ -21,6 +21,12 @@ ol {
   margin: 0 0 0 40px;
   padding: 0;
 }
+
+// class attached to body when overlay is open. prevents scrolling under overlay
+.modalActive {
+  overflow: hidden;
+}
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
