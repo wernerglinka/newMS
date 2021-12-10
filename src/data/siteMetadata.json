@@ -19,5 +19,6 @@
     "github": ""
   },
   "imagePrefix": "https://res.cloudinary.com/glinkaco/image/upload/",
-  "imageDefault": ""
+  "imageDefault": "",
+  "audioPrefix": "https://res.cloudinary.com/glinkaco/video/upload/"
 }

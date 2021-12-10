@@ -48,7 +48,7 @@ function watchSite(done) {
       gulp.series(processStyles,metalsmith, reload)
     );
     gulp.watch(
-      ['src/*.md.njk, src/*.njk'],
+      'src/content/**/*.md.njk', 
       gulp.series(metalsmith, reload)
     );
   }

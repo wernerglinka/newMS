@@ -8,12 +8,6 @@ data:
   site: "../data/siteMetadata.json"
   nav: "../data/siteNavigation.json"
 
-footnote: this is a footnote
-header_title: This is the home page header
-header_text: Vestibulum id ligula porta felis euismod semper. Nullam quis risus eget urna mollis ornare vel eu leo.
-footer_text: Donec sed odio dui. Maecenas sed diam eget risus varius blandit sit amet non magna.
-filter_test: I should have dashes between words
-
 sections:
   - component: banner
     disabled: false
@@ -25,9 +19,9 @@ sections:
     paddingBottom: true
     backgroundColor: ""
     targetID: ""
-    title: Banner Title
+    title: Metalsmith Sandbox
     header: "h1"
-    subTitle: Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
+    subTitle: My personal sandbox site to experiement with static MS sites.
     hasCtas: true
     ctas:
       - url: "/other-page/"
@@ -41,11 +35,11 @@ sections:
         isButton: false
         buttonStyle: "primary"
         isVideoTrigger: true
-        videoID: "2NJqyQ0b5tw"
+        videoID: "IZvEf3JpESU"
     mediaType: Video
     video:
       src: youtube
-      id: "2NJqyQ0b5tw"
+      id: "IZvEf3JpESU"
       tn: "v1636656059/gatsby4mdx/one-tree_nnl9ts.jpg"
       aspectRatio: "56.25"
     image:
@@ -73,11 +67,13 @@ sections:
     paddingBottom: true
     backgroundColor: ""
     targetID: ""
-    title: Intro Title
+    title: Why Metalsmith?
     header: "h2"
-    subTitle: Intro sub title
+    subTitle: ...never heard of it?
     prose: |-
-      Aenean lacinia bibendum nulla sed consectetur. Nulla vitae elit libero, a pharetra augue. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla. **Donec ullamcorper nulla non metus auctor fringilla**. Nullam quis risus eget urna mollis ornare vel eu leo.
+      I came across [Metalsmith](https://www.metalsmith.io/) in 2017 when I was researching options for a static site generator. Metalsmith was appealing because it is Javascript based and very flexible. Turns out Metalsmith is completely technology-agnostic when it comes to how to build a static website. It just converts files from a source directory into javascript objects and provides an API for plugins to transform/manipulate these objects. Once all plugins have been used, the objects are converted back to a file and loaded into a destination directory.
+
+      I have used Metalsmith to build several websites for technology companies and non-profits. But over the last couple of years clients have shown a strong preference for Gatsby so Metalsmith has not been a focus of mine for a while. I use this site to keep up my Metalsmith skills and to see how something that I have build in React/Gatsby could be done with Metalsmith/Nunjucks. The repo for this site can be found [here](https://github.com/wernerglinka/newMS).
 
     hasCtas: true
     ctas:
@@ -124,11 +120,12 @@ sections:
     header: "h3"
     subTitle: "Indeed, what is it?"
     prose: |-
-      The Media Object pattern is: image thingy on the left, heading and text on the right.
+      A staple of almost any corporate website, the media component is a construct that uses an image and some text to get a point across. Or as Chris Coyier would say:
+      _"The Media Object pattern is: image thingy on the left, heading and text on the right."_
 
-      That’s what [Nicole Sullivan](http://www.stubbornella.org/content/2010/06/25/the-media-object-saves-hundreds-of-lines-of-code/) called it and the [name stuck](https://getbootstrap.com/docs/4.0/layout/media-object/). It’s a pretty simple pattern, but like all things web design, it can be done many ways.
+      Read more about this in the [CSS-Tricks](https://css-tricks.com/) article **[The Media Object, A Bunch of Ways](https://css-tricks.com/media-object-bunch-ways/)**
 
-      In this implementation the image thingy can be
+      In this implementation the "image thingy" can be:
 
       - an image
       - a video
@@ -136,7 +133,7 @@ sections:
       - an icon
       - an audio player
 
-    hasCtas: true
+    hasCtas: false
     ctas:
       - label: "Another CTA"
         url: "/other-page/"
@@ -178,11 +175,13 @@ sections:
     paddingTop: true
     paddingBottom: true
     reverse: false
-    title: "Another Media component"
+    title: "Media component with an icon"
     header: "h3"
     subTitle: ""
     prose: |-
-        In this example the order of image and text have been reversed, instead of an image we show an icon and a cta is diplayed at the text bottom
+        In this example the order of image and text have been reversed, instead of an image we show an icon and a cta is diplayed at the text bottom.
+        
+        Icons are stored in svg code and injected into the Nunjucks templates via it name.
     hasCtas: true
     ctas:
       - label: "Let's go shopping"
@@ -224,23 +223,28 @@ sections:
     paddingTop: false
     paddingBottom: false
     reverse: true
-    title: "media component below the fold ?"
+    title: "Media component below the fold ?"
     header: "h3"
     subTitle: ""
     prose: |-
-        This media component is located under fold to test progressive image loading
+        This media component is located under the "fold" to test progressive image loading. 
+        
+        The site uses [cloudinary.io](https://cloudinary.com/) to store all images. Cloudinary's on-the-fly image transformations allow for a very effective progressive image with lazy load implementation. In essence a low resolution copy of the image is loaded first and when the image enters the viewport it is updated with an image that is properly sized for the available space.
 
-    hasCtas: false
+        Here is a very interesting talk by Jose Perez about Progressive Image Rendering.
+
+    hasCtas: true
     ctas:
       - label: "Play Video"
         isExternal: false
         isButton: false
         buttonStyle: "primary"
         isVideoTrigger: true
+        videoID: "S70xyRYCNdY"
     mediaType: Video
     video:
       src: youtube
-      id: "x_gl9cnOxcQ"
+      id: "S70xyRYCNdY"
       tn: "v1636656059/gatsby4mdx/one-tree_nnl9ts.jpg"
       aspectRatio: "56.25"
     image:
@@ -270,11 +274,11 @@ sections:
     paddingTop: false
     paddingBottom: false
     reverse: false
-    title: "We go further under the fold"
+    title: "Media component with an Audio Player"
     header: "h3"
     subTitle: ""
     prose: |-
-        This media component is located under fold to test progressive image loading
+        Here is an example of an audio player with a nice image background.
 
     hasCtas: false
     ctas:
@@ -284,7 +288,7 @@ sections:
         isButton: false
         buttonStyle: ""
         isExternal: false
-    mediaType: Image
+    mediaType: Audio
     video:
       src: youtube
       id: ""
@@ -301,10 +305,10 @@ sections:
         loop: true
     icon: ""
     audio:
-      bgImage: ""
-      aspectRatio: ""
-      ogg: ""
-      mpeg: ""
+      bgImage: "v1636656059/gatsby4mdx/trees-water_fe7obz.jpg"
+      aspectRatio: "56.25"
+      ogg: "v1639165770/gatsby4mdx/audio/sample-ogg-file_fmjjrl.ogg"
+      mpeg: "v1639165774/gatsby4mdx/audio/sample-mp3-file_hwsxlc.mp3"
 
   - component: media
     animateSection: true

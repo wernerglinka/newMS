@@ -3,6 +3,7 @@
 {% from "../partials/text.njk" import text %}
 {% from "../partials/icon.njk" import icon %}
 {% from "../partials/video.njk" import video %}
+{% from "../partials/audio.njk" import audio %}
 
 {# this section receives props params and site #}
 
@@ -39,6 +40,11 @@
       {% if params.mediaType === "Video"%}
         {% set videoData = params.video %}
         {{ video(videoData, site) }}
+      {% endif %}
+
+      {% if params.mediaType === "Audio"%}
+        {% set audioData = params.audio %}
+        {{ audio(audioData, site) }}
       {% endif %}
 
     </div>
