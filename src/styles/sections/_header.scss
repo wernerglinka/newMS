@@ -2,6 +2,7 @@
   position: relative;
   z-index: 1000;
   height: 90px;
+  margin-bottom: 50px;;
 
   header {
     position: fixed;
@@ -21,8 +22,12 @@
     display: flex;
     justify-content: flex-start;
 
-    @media (max-width: 1440px) {
+    @media (max-width: 1520px) {
+      max-width: 100%;
       padding: 0 40px;
+    }
+    @media (max-width: 500px) {
+      padding: 0 20px;
     }
   }
 }

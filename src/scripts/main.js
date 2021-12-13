@@ -1,6 +1,5 @@
 // NOTE: main.js is called at the end of the document body - no DOMContentLoaded event needed
-import barba from '@barba/core';
-import barbaCss from '@barba/css';
+import Swup from 'swup';
 
 import loadResponsiveImage from './modules/load-responsive-image';
 import hamburger from './modules/hamburger';
@@ -23,23 +22,19 @@ window.videoAPIReady = new Promise(resolve => {
   window.onYouTubeIframeAPIReady = () => resolve();
 });
 
-
-(function() {
+function initPage() {
   hamburger.init();
   loadResponsiveImage.init();
   modalVideo.init();
+};
 
-  barba.use(barbaCss);
-  barba.init({
-    transitions: [
-      {
-        once() {}
-      },
-      {
-        name: "fade",
-        leave() {},
-        enter() {}
-      }
-    ]
-  });
+
+
+(function() {
+  const swup = new Swup();
+
+  initPage();
+
+  swup.on('contentReplaced', initPage);
+  
 })();

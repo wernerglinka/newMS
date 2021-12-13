@@ -5,17 +5,16 @@
   </head>
 </h1>
 
-<body data-barba="wrapper">
-  {% include "partials/header.njk" %}
-
-  <main data-barba="container" data-barba-namespace={{pageName}}>
+<body>
+  <main id="swup" class="transition-fade">
+    {% include "partials/header.njk" %}
     {% block body %}
-    This is the default contents
-  {% endblock %}
+      This is the default contents
+    {% endblock %}
+
+    {% include "partials/footer.njk" %}
+
+    {% include "partials/scripts.njk" %}
   </main>
-
-  {% include "partials/footer.njk" %}
-
-  {% include "partials/scripts.njk" %}
 </body>
 </html>
