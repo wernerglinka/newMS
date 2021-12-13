@@ -3,8 +3,6 @@ const googleWebFonts = require('gulp-google-webfonts');
 
 const paths = require("./paths");
 
-console.log(paths);
- 
 const options = { };
  
 module.exports = function () {

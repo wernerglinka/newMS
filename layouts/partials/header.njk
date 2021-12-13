@@ -5,8 +5,9 @@
     <div class="container">
       <div id="overlay" class="js-overlay"></div>
       <div id="brand">
+
         {% set iconSource = "logo" %}
-        {% if isHome %}
+        {% if path === "" %}
           {{ icon(iconSource) }}
         {% else %}
           <a href="/">{{ icon(iconSource) }}</a>

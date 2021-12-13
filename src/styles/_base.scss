@@ -49,3 +49,34 @@ ol {
     }
   }
 }
+
+.barba-once {
+  opacity: 0;
+}
+.barba-once-active {
+  transition: all 1s linear;
+}
+.barba-once-to {
+  opacity: 1;
+}
+
+.fade-leave {
+  opacity: 1;
+}
+.fade-leave-active {
+  transition: opacity 0.3s linear;
+}
+.fade-leave-to {
+  opacity: 0;
+}
+
+/* Fade in the next container */
+.fade-enter {
+  opacity: 0;
+}
+.fade-enter-active {
+  transition: opacity 0.3s linear;
+}
+.fade-enter-to {
+  opacity: 1;
+}

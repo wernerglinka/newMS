@@ -1,6 +1,5 @@
 import debounce from "../utilities/debounce";
 
-
 const loadResponsiveImage = (function loadResponsiveImage() {
   "use strict"
 

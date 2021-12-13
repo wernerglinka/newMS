@@ -1,4 +1,7 @@
 // NOTE: main.js is called at the end of the document body - no DOMContentLoaded event needed
+import barba from '@barba/core';
+import barbaCss from '@barba/css';
+
 import loadResponsiveImage from './modules/load-responsive-image';
 import hamburger from './modules/hamburger';
 import modalVideo from "./modules/modal-video";
@@ -25,4 +28,18 @@ window.videoAPIReady = new Promise(resolve => {
   hamburger.init();
   loadResponsiveImage.init();
   modalVideo.init();
+
+  barba.use(barbaCss);
+  barba.init({
+    transitions: [
+      {
+        once() {}
+      },
+      {
+        name: "fade",
+        leave() {},
+        enter() {}
+      }
+    ]
+  });
 })();

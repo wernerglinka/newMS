@@ -1,4 +1,5 @@
 const Metalsmith = require('metalsmith');
+const metadata = require('metalsmith-metadata');
 const assets = require('metalsmith-assets');
 const loadData = require('metalsmith-data-loader');
 const layouts = require('metalsmith-layouts');
@@ -21,6 +22,7 @@ const toUpper = string => string.toUpperCase();
 const spaceToDash = string => string.replace(/\s+/g, '-');
 const condenseTitle = string => string.toLowerCase().replace(/\s+/g, '');
 const mdToHTML = string => converter.makeHtml(string);
+const UTCdate = date => date.toUTCString();
 
 // get working directory
 // workingDir is a child of "__dirname"
@@ -37,6 +39,7 @@ const templateConfig = {
       spaceToDash,
       condenseTitle,
       mdToHTML,
+      UTCdate,
     },
     extensions: {
       CaptureTag: new CaptureTag(),
@@ -54,6 +57,9 @@ module.exports = function metalsmith(callback) {
     .source('./src/content')
     .destination('./build')
     .clean(true)
+    .metadata({
+      buildDate: new Date(),
+    })
 
     // Load metadata from external files
     // Files are in either .yml or .json format
@@ -88,13 +94,13 @@ module.exports = function metalsmith(callback) {
 
     // Generate a metadata json file for each page
     // Used for Debug only
-    //.use(
-    //  writeMetadata({
-    //    pattern: ['**/*.html'],
-    //    ignorekeys: ['next', 'contents', 'previous'],
-    //    bufferencoding: 'utf8',
-    //  })
-    //)
+    .use(
+      writeMetadata({
+        pattern: ['**/*.html'],
+        ignorekeys: ['next', 'contents', 'previous'],
+        bufferencoding: 'utf8',
+      })
+    )
 
     .use(
       msif(!!util.env.linkcheck, () => {

@@ -3,15 +3,19 @@
   <head>
     {% include "partials/head.njk" %}
   </head>
-  <body>
-    {% include "partials/header.njk" %}
+</h1>
 
-    {% block body %}   
-      This is the default contents
-    {% endblock %}
+<body data-barba="wrapper">
+  {% include "partials/header.njk" %}
 
-    {% include "partials/footer.njk" %}
+  <main data-barba="container" data-barba-namespace={{pageName}}>
+    {% block body %}
+    This is the default contents
+  {% endblock %}
+  </main>
 
-    {% include "partials/scripts.njk" %}
-  </body>
+  {% include "partials/footer.njk" %}
+
+  {% include "partials/scripts.njk" %}
+</body>
 </html>
