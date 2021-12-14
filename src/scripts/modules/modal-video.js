@@ -7,6 +7,9 @@ const modalVideo = (function() {
     const videoOverlay = document.getElementById("video-overlay");
     const closeVideoOverlay = videoOverlay.querySelector('.close');
 
+    console.log("init video links");
+    console.log(modalVideoTriggers);
+
     modalVideoTriggers.forEach(function(thisTrigger) {
       const requestedVideoID = thisTrigger.dataset.videoid;
       const startTime = thisTrigger.dataset.startTime;
@@ -109,16 +112,24 @@ const modalVideo = (function() {
   };
 
   const init = function() {
+    const modalVideoTriggers = document.querySelectorAll('.js-modal-video');
     // if no video trigger links on page return
-    if (document.querySelectorAll('.js-modal-video').length < 1) {
+    if (modalVideoTriggers.length < 1) {
       return;
     }
+
+    console.log("init videos");
+    console.log(modalVideoTriggers);
 
     // initialize all video players on a page
     // videoAPIReady is a defered javascript object for when the Youtube API has been loaded
     window.videoAPIReady.then(() => {
-      // create an video overlay and add to DOM
-      const newVideoOverlay = `
+      
+      console.log("videoAPIReady");
+
+      // create an video overlay and add to DOM if it doesn't already exist
+      if (!document.querySelector('#video-overlay')) {
+        const newVideoOverlay = `
         <div id="video-overlay" class="js-video-overlay">
             <span class="close">[Close]</span>
             <div class="responsive-wrapper">
@@ -128,8 +139,9 @@ const modalVideo = (function() {
             </div>
         </div>
       `;
-      document.body.insertAdjacentHTML('beforeend', newVideoOverlay);
-
+        document.body.insertAdjacentHTML('beforeend', newVideoOverlay);
+      }
+      
       const videoID = modalVideoTriggers[0].dataset.videoid;
       const startTime = modalVideoTriggers[0].dataset.startTime;
       const endTime = modalVideoTriggers[0].dataset.endTime;
