@@ -23,6 +23,7 @@ const spaceToDash = string => string.replace(/\s+/g, '-');
 const condenseTitle = string => string.toLowerCase().replace(/\s+/g, '');
 const mdToHTML = string => converter.makeHtml(string);
 const UTCdate = date => date.toUTCString();
+const trimSlashes = string => string.replace(/(^\/)|(\/$)/g, "");
 
 // get working directory
 // workingDir is a child of "__dirname"
@@ -40,6 +41,7 @@ const templateConfig = {
       condenseTitle,
       mdToHTML,
       UTCdate,
+      trimSlashes,
     },
     extensions: {
       CaptureTag: new CaptureTag(),

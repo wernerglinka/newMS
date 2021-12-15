@@ -49,4 +49,16 @@
   pointer-events: auto;
   transition: opacity 1s ease-in-out;
 }
+
+// active path
+[pageName="home"] #main-menu .home {
+  color: #666;
+  pointer-events: none;
+  cursor: default;
+}
+[pageName="other-page"] #main-menu .other-page {
+  color: #666;
+  pointer-events: none;
+  cursor: default;
+}
   

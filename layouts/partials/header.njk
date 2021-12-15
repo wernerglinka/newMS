@@ -19,7 +19,12 @@
                 {% if menuItem.isExternal %}
                   <a href={{ menuItem.url}} target="_blank" rel="noopener noreferrer">{{ menuItem.label }}</a>
                 {% else %}
-                  <a href={{ menuItem.url}}>{{ menuItem.label }}</a>
+                  {% if menuItem.url === "/" %}
+                    {% set path = "home" %}
+                  {% else %}
+                    {% set path = menuItem.url %}
+                  {% endif %}
+                  <a href={{ menuItem.url}} class="{{ path | trimSlashes }}">{{ menuItem.label }}</a>
                 {% endif %}
                 <p>{{ menuItem.description }}</p>
               </div>
