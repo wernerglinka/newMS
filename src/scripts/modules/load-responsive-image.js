@@ -51,6 +51,7 @@ const loadResponsiveImage = (function loadResponsiveImage() {
     }
   }, 500);
 
+  // resize and intersectionObserver are persistent window methods, ergo they fire after SWUP loads
   const init = () => {
     // images will update on page load and after a resize
     const resizeObserver = new ResizeObserver(updateImage);

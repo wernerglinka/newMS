@@ -6,15 +6,16 @@
 </h1>
 
 <body>
+  {% include "partials/header.njk" %}
+
   <main id="swup" class="transition-fade">
-    {% include "partials/header.njk" %}
     {% block body %}
       This is the default contents
     {% endblock %}
-
-    {% include "partials/footer.njk" %}
-
-    {% include "partials/scripts.njk" %}
   </main>
+
+  {% include "partials/footer.njk" %}
+  {% include "partials/scripts.njk" %}
+
 </body>
 </html>

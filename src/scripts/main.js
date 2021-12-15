@@ -2,7 +2,7 @@
 import Swup from 'swup';
 
 import loadResponsiveImage from './modules/load-responsive-image';
-import hamburger from './modules/hamburger';
+import navigation from './modules/navigation';
 import modalVideo from "./modules/modal-video";
 
 
@@ -25,7 +25,7 @@ function initPage() {
     window.onYouTubeIframeAPIReady = () => resolve();
   });
 
-  hamburger.init();
+  navigation.init();
   loadResponsiveImage.init();
   modalVideo.init();
 };
@@ -35,6 +35,4 @@ function initPage() {
 
   initPage();
 
-  swup.on('contentReplaced', initPage);
-  
 })();

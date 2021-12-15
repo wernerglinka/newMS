@@ -41,27 +41,27 @@
       background: blue;
     }
   }
+}
 
-  &.active {
-    span {
-      background-color: transparent;
-    }
+.menuActive #hamburger {
+  span {
+    background-color: transparent;
+  }
+  span:before,
+  span:after {
+    top: 0;
+    background-color: red;
+  }
+  span:before {
+    transform: rotate(45deg);
+  }
+  span:after {
+    transform: rotate(-45deg);
+  }
+  &:hover {
     span:before,
     span:after {
-      top: 0;
       background-color: red;
-    }
-    span:before {
-      transform: rotate(45deg);
-    }
-    span:after {
-      transform: rotate(-45deg);
-    }
-    &:hover {
-      span:before,
-      span:after {
-        background-color: red;
-      }
     }
   }
 }

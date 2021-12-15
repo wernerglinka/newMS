@@ -1,6 +1,17 @@
 {
   "menu": [
     {
+      "icon": "house",
+      "label": "Go Home",
+      "description": "Cum sociis natoque penatibus et magnis dis parturient montes.",
+      "url": "/",
+      "submenuID": "",
+      "submenuClass": "",
+      "isButton": false,
+      "buttonClass": "",
+      "isExternal": false
+    },
+    {
       "icon": "feather",
       "label": "Other Page",
       "description": "Maecenas sed diam eget risus varius blandit sit amet non magna",

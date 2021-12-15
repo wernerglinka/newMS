@@ -9,3 +9,9 @@
     height: 50px;
   }
 }
+
+// deactivate the home link when on home page
+[pageName="home"] #brand a {
+  pointer-events: none;
+  cursor: default;
+}

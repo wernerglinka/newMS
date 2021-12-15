@@ -9,13 +9,6 @@
   pointer-events: none;
   transition: opacity 0.5s ease-in-out;
   
-  
-  &.isActive {
-    opacity: 1;
-    pointer-events: auto;
-    transition: opacity 2s ease-in-out;
-  }
-
   ul {
     list-style: none;
 
@@ -49,5 +42,11 @@
       margin-top: 0;
     }
   }
+}
+
+.menuActive #main-menu {
+  opacity: 1;
+  pointer-events: auto;
+  transition: opacity 1s ease-in-out;
 }
   

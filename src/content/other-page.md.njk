@@ -105,4 +105,56 @@ sections:
       aspectRatio: ""
       ogg: ""
       mpeg: ""
+  
+  - component: media
+    animateSection: true
+    inContainer: true
+    hasBackground: false
+    bgColor: ""
+    bgIsDark: false
+    marginTop: true
+    marginBottom: true
+    paddingTop: false
+    paddingBottom: false
+    reverse: false
+    title: "Media component below the fold ?"
+    header: "h3"
+    subTitle: ""
+    prose: |-
+        This media component is located under the "fold" to test progressive image loading. 
+        
+        The site uses [cloudinary.io](https://cloudinary.com/) to store all images. Cloudinary's on-the-fly image transformations allow for a very effective progressive image with lazy load implementation. In essence a low resolution copy of the image is loaded first and when the image enters the viewport it is updated with an image that is properly sized for the available space.
+
+        Here is a very interesting talk by Jose Perez about Progressive Image Rendering.
+
+    hasCtas: true
+    ctas:
+      - label: "Play Video"
+        isExternal: false
+        isButton: false
+        buttonStyle: "primary"
+        isVideoTrigger: true
+        videoID: "S70xyRYCNdY"
+    mediaType: Video
+    video:
+      src: youtube
+      id: "S70xyRYCNdY"
+      tn: "v1636656059/gatsby4mdx/one-tree_nnl9ts.jpg"
+      aspectRatio: "56.25"
+    image:
+      src: "v1636656058/gatsby4mdx/trees-fog_dru2h3.jpg"
+      alt: "a tree"
+      aspectRatio: "62.5"
+    lottieData:
+      src: ""
+      control:
+        autoplay: true
+        loop: true
+    icon: ""
+    audio:
+      bgImage: ""
+      aspectRatio: ""
+      ogg: ""
+      mpeg: ""
+
 ---

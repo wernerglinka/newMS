@@ -1,5 +1,4 @@
 const modalVideo = (function() {
-  const modalVideoTriggers = document.querySelectorAll('.js-modal-video');
   let player;
 
   // initialize all video links
@@ -7,16 +6,15 @@ const modalVideo = (function() {
     const videoOverlay = document.getElementById("video-overlay");
     const closeVideoOverlay = videoOverlay.querySelector('.close');
 
-    console.log("init video links");
-    console.log(modalVideoTriggers);
+    // delegate click event listeners for modal videos to the document
+    // as the content of the body will be replaced by SWUP
+    document.addEventListener("click", e => {
+      if (e.target.matches(".js-modal-video, .js-modal-video * ")) {
+        const thisTrigger = e.target.closest(".js-modal-video");
+        const requestedVideoID = thisTrigger.dataset.videoid;
+        const startTime = thisTrigger.dataset.startTime;
+        const endTime = thisTrigger.dataset.endTime;
 
-    modalVideoTriggers.forEach(function(thisTrigger) {
-      const requestedVideoID = thisTrigger.dataset.videoid;
-      const startTime = thisTrigger.dataset.startTime;
-      const endTime = thisTrigger.dataset.endTime;
-
-      // listen for clicks on each link
-      thisTrigger.addEventListener('click', e => {
         e.preventDefault();
         e.stopPropagation();
 
@@ -45,9 +43,12 @@ const modalVideo = (function() {
         }
         // we might have muted a previous video. set the default level
         player.setVolume(50);
-      });
+      }
     });
 
+    // the video overlay is outside the content area, thus is permanent for all pages
+    // ergo we can attach the event handler directly to the element
+    
     // close video overlay when close link is clicked
     closeVideoOverlay.addEventListener("click", () => {
       // fadeout sound as we close the overlay
@@ -118,15 +119,10 @@ const modalVideo = (function() {
       return;
     }
 
-    console.log("init videos");
-    console.log(modalVideoTriggers);
-
     // initialize all video players on a page
     // videoAPIReady is a defered javascript object for when the Youtube API has been loaded
     window.videoAPIReady.then(() => {
       
-      console.log("videoAPIReady");
-
       // create an video overlay and add to DOM if it doesn't already exist
       if (!document.querySelector('#video-overlay')) {
         const newVideoOverlay = `
