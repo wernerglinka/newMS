@@ -4,6 +4,7 @@ import Swup from 'swup';
 import loadResponsiveImage from './modules/load-responsive-image';
 import navigation from './modules/navigation';
 import modalVideo from "./modules/modal-video";
+import externalLinks from "./modules/external-links";
 
 
 
@@ -28,10 +29,16 @@ function initPage() {
   navigation.init();
   loadResponsiveImage.init();
   modalVideo.init();
+  externalLinks.init();
 };
 
 (function() {
-  const swup = new Swup();
+  const options = {
+    // disable SWUP from intercepting anchor links and external links
+    linkSelector:
+      'a[href^="/"]:not([data-no-swup]), a[href^="' + window.location.origin + '"]:not([data-no-swup])'
+  };
+  const swup = new Swup(options);
 
   initPage();
 

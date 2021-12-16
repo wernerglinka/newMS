@@ -5,6 +5,9 @@
   position: fixed;
   right: 20px;
   bottom: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease-in-out;
 
   * {
     pointer-events: none;
@@ -15,4 +18,9 @@
     stroke-width: 1px;
     stroke: #333;
   }
+}
+
+.is-scrolling .to-top {
+  opacity: 1;
+  pointer-events: auto;
 }
