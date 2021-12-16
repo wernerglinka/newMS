@@ -1,5 +1,8 @@
+{% from "../partials/icon.njk" import icon %}
+
 <footer>
   <div class="container">
     <p>Last site build: {{ stats.atime | UTCdate }}</p>
   </div>
+  <a class="to-top" href="#at-top">{{ icon("arrow-up-circle") }}</a>
 </footer>

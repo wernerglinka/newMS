@@ -1,16 +1,34 @@
-#overlay {
+// an overlay is produced by attaching pseudo elements to the header and
+// rotating them into view when the main menu is active
+
+header:before,
+header:after {
+  content: "";
   position: fixed;
-  top: 0;
   left: 0;
-  transform: rotate(-90deg);
-  transform-origin: top left;
   transition: all 1s ease-in-out;
   width: 200%;
   height: 200%;
-  background-color: rgba(50, 50, 100, 0.95); 
+  background-color: rgba(50, 50, 100, 0.8);
 }
 
-.menuActive #overlay {
+header:before {
+  top: 0;
+  transform: rotate(-90deg);
+  transform-origin: top left;
+}
+
+.menuActive header:before {
+  transform: rotate(0deg);
+}
+
+header:after {
+  bottom: 0;
+  transform: rotate(90deg);
+  transform-origin: bottom left;
+}
+
+.menuActive header:after {
   transform: rotate(0deg);
 }
 
@@ -22,7 +40,7 @@
     right: 0;
     bottom: 0;
     left: 0;
-    z-index: 1000;
+    z-index: 3000;
     background-color: rgba(50, 50, 100, 0.95);
     display: none;
 
@@ -76,7 +94,7 @@
       }
     }
     &.fadeout {
-      animation-duration: 2s;
+      animation-duration: 1s;
       animation-name: fadeout;
       animation-fill-mode: forwards;
     }

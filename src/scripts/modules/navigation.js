@@ -26,7 +26,6 @@ const navigation = (function() {
       }
     })
 
-
     // use a body attribute "pageName" to style nav items, etc.
 
     // get the path from the window.location object and delete leading and trailing "/"
@@ -40,6 +39,16 @@ const navigation = (function() {
       loc = loc ? loc : "home";
       document.body.setAttribute("pageName", loc);
     });
+
+    // fadein the header background when page starts scrolling
+    const scrollObserver = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        document.body.classList.remove("is-scrolling");
+      } else {
+        document.body.classList.add("is-scrolling");
+      }
+    });
+    scrollObserver.observe(header);
   };
   
   return { init }

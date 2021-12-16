@@ -44,6 +44,7 @@ const modalVideo = (function() {
         // we might have muted a previous video. set the default level
         player.setVolume(50);
       }
+
     });
 
     // the video overlay is outside the content area, thus is permanent for all pages
