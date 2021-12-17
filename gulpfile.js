@@ -44,7 +44,7 @@ function watchSite(done) {
       gulp.series(processScripts, metalsmith, reload)
     );
     gulp.watch(
-      'src/styles/**/*.scss',
+      ['src/styles/*.scss', 'src/styles/**/*.scss'],
       gulp.series(processStyles,metalsmith, reload)
     );
     gulp.watch(

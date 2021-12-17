@@ -38,6 +38,10 @@ ol {
 
   .prose {
     padding-right: 50px;
+
+    @media (max-width: 767px) {
+      padding: 0;
+    }
   }
 
   &.reverse {
@@ -46,6 +50,10 @@ ol {
     .prose {
       padding-right: 0;
       padding-left: 50px;
+
+      @media (max-width: 767px) {
+        padding: 0;
+      }
     }
   }
 }
