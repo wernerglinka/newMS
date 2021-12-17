@@ -3,7 +3,7 @@
     {
       "icon": "house",
       "label": "Go Home",
-      "description": "Cum sociis natoque penatibus et magnis dis parturient montes.",
+      "description": "Where it all starts.",
       "url": "/",
       "submenuID": "",
       "submenuClass": "",
@@ -23,9 +23,20 @@
       "isExternal": false
     },
     {
+      "icon": "image",
+      "label": "What's a Media Component?",
+      "description": "Explore what the media component can do.",
+      "url": "/media-component",
+      "submenuID": "",
+      "submenuClass": "",
+      "isButton": false,
+      "buttonClass": "",
+      "isExternal": false
+    },
+    {
       "icon": "database",
-      "label": "So Important",
-      "description": "Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor",
+      "label": "Go Apple",
+      "description": "Example of an external link in the main menu.",
       "url": "https://apple.com",
       "submenuID": "",
       "submenuClass": "",
