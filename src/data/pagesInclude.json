@@ -1,0 +1,6 @@
+{
+  "data": {
+    "site": "../data/siteMetadata.json",
+    "nav": "../data/siteNavigation.json"
+  }
+}

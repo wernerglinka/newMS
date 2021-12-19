@@ -1,5 +1,4 @@
 const Metalsmith = require('metalsmith');
-const metadata = require('metalsmith-metadata');
 const assets = require('metalsmith-assets');
 const loadData = require('metalsmith-data-loader');
 const layouts = require('metalsmith-layouts');
@@ -9,8 +8,6 @@ const writeMetadata = require('metalsmith-writemetadata');
 const linkcheck = require('metalsmith-linkcheck');
 const msif = require('metalsmith-if');
 const CaptureTag = require('nunjucks-capture');
-
-const date = require('metalsmith-build-date');
 
 const util = require('gulp-util');
 
@@ -28,8 +25,10 @@ const trimSlashes = string => string.replace(/(^\/)|(\/$)/g, "");
 // get working directory
 // workingDir is a child of "__dirname"
 const path = require('path');
-const monitor = require('../local_modules/metalsmith-monitor');
 const workingDir = path.join(__dirname, '../');
+
+//const monitor = require('../local_modules/metalsmith-monitor');
+const getExternalPages = require('../local_modules/wordpress-pages');
 
 // Define engine options for the inplace and layouts plugins
 const templateConfig = {
@@ -63,6 +62,11 @@ module.exports = function metalsmith(callback) {
       buildDate: new Date(),
     })
 
+    // inject pages from wordpress
+    .use(getExternalPages({
+      sourceURL: "https://dev-metalsmith.pantheonsite.io/wp-json/wp/v2/pages/",
+    }))
+
     // Load metadata from external files
     // Files are in either .yml or .json format
     // MetaData are inserted in each file like this: "data: !siteData.yml"
@@ -72,8 +76,6 @@ module.exports = function metalsmith(callback) {
         directory: 'src/data/',
       })
     )
-
-    .use(date())
 
     .use(inplace(templateConfig))
 
@@ -92,7 +94,7 @@ module.exports = function metalsmith(callback) {
     
     // Show all metadata for each page in console
     // Used for Debug only
-    // .use(monitor())
+    //.use(monitor())
 
     // Generate a metadata json file for each page
     // Used for Debug only
