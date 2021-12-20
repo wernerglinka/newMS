@@ -10,7 +10,7 @@
 
       <div id="main-menu" class="js-main-menu">
         <ul>
-          {% for menuItem in data.nav.menu %}
+          {% for menuItem in nav.menu %}
             <li>
               {% set iconSource = menuItem.icon %}
               {{ icon(iconSource) }}

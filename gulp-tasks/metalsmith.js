@@ -1,6 +1,7 @@
 const Metalsmith = require('metalsmith');
 const assets = require('metalsmith-assets');
 const loadData = require('metalsmith-data-loader');
+const metadata = require('metalsmith-metadata');
 const layouts = require('metalsmith-layouts');
 const inplace = require('metalsmith-in-place');
 const permalinks = require('@metalsmith/permalinks');
@@ -69,15 +70,10 @@ module.exports = function metalsmith(callback) {
       contentTypes: ["pages", "things"]
     }))
 
-    // Load metadata from external files
-    // Files are in either .yml or .json format
-    // MetaData are inserted in each file like this: "data: !siteData.yml"
-    // Reference: https://www.npmjs.com/package/metalsmith-data-loader
-    .use(
-      loadData({
-        directory: 'src/data/',
-      })
-    )
+    .use(metadata({
+      site: "data/siteMetadata.json",
+      nav: "data/siteNavigation.json"
+    }))
 
     .use(inplace(templateConfig))
 

@@ -9,7 +9,7 @@
 
       {% set name = section.component %}
       {% set params = section %}
-      {% set site = data.site %}
+      {% set site = site %}
 
       <div class="section-wrapper {% if section.inContainer %}inContainer{% endif %}">
         {{ component(name, params, site) }}
