@@ -79,14 +79,18 @@ const path = require('path');
 
     // execute request for every content type
     axios.all(allRequests).then(axios.spread((...responses) => {
+      
       // loop over all content types
       responses.forEach(response => {
+        
         // build the pages for this content type
         response.data.forEach(page => {
+          
           // use content type and WP slug as file name/object key
           const contentType = page.type === 'page' ? "" : `${page.type}/`;
           const fileName = `${contentType}${page.slug}.html`;
 
+          // define the page
           const pageContent = {
             layout: page.acf.layout,
             title: fileName.replace(/-/g, ' '),
