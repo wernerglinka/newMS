@@ -22,24 +22,75 @@ const path = require('path');
     return;
   }
 
-  // get file with all global file includes
-  // these should include data to build the navigation, site globals etc.
-  const include = fs.readFileSync(path.join(process.cwd(), '/src/data/pagesInclude.json'), {encoding:'utf8', flag:'r'});
-  const includeData = JSON.parse(include).data;
+  if (!options.contentTypes.length) {
+    console.log("Missing Content Type(s)");
+    return;
+  }
+
+  /**
+   * function to adjust data file paths 
+   * @param {*} contentType 
+   * @returns {object} adjusted dat file paths
+   * 
+   * Page templates need access to site specific and navigation metadata. In markdown,
+   * for top level pages, they would be included like so:
+   *    data: 
+   *      site: "../data/siteMetadata.json"
+   *      nav: "../data/siteNavigation.json"
+   * 
+   * For external page we use an object in /src/data/pagesInclude.json to inject this info
+   * programmatically. These paths needs adjustment for lower level pages. 
+   * 
+   * For all pages of content type "pages" we assume that the are at the top level. Other 
+   * content types, like "things" will be one level below. e.g. /things/<page name>. For those
+   * we add a "../" for each level.
+   * 
+   */
+  function getDataIncludes (contentType) {
+    // get file with all global file includes
+    // these should include data to build the navigation, site globals etc.
+    const include = fs.readFileSync(path.join(process.cwd(), '/src/data/pagesInclude.json'), {encoding:'utf8', flag:'r'});
+    let includeData = JSON.parse(include).data;
+
+    // add "../" for each level the new page is removed from "src" level
+    const contentTypesArray = contentType.split("/");
+    const pathLevel = "../";
+
+    // if content type is "pages", array length will be 1. 
+    if (contentTypesArray.length > 1) {
+      for (let i = 1; contentTypesArray.length > i; i++) {
+        // adjust pathLevel
+        Object.keys(includeData).forEach(key => {
+          includeData[key] = `${pathLevel}${includeData[key]}`;
+        });
+      }
+    }
+    return includeData;
+  }
 
   return (files, metalsmith, done) => {
+    // we will be requesting pages of different content types, one request for every content type
 
-    // get pages object from the WP site
-    axios.get(options.sourceURL)
-      .then(function (response) {
-        // loop through all page objects and build the corresponsing Metalsmith object
+    // create an array of URLs to get the various content type pages
+    // source: https://www.storyblok.com/tp/how-to-send-multiple-requests-using-axios
+    const requestURLs = options.contentTypes.map(contentType => `${options.sourceURL}/${contentType}/`);
+    // create array of request promises
+    const allRequests = requestURLs.map(url => axios.get(url));
+
+    // execute request for every content type
+    axios.all(allRequests).then(axios.spread((...responses) => {
+      // loop over all content types
+      responses.forEach(response => {
+        // build the pages for this content type
         response.data.forEach(page => {
-          // use WP slug as file name/object key
-          const fileName = `${page.slug}.html`;
+          // use content type and WP slug as file name/object key
+          const contentType = page.type === 'page' ? "" : `${page.type}/`;
+          const fileName = `${contentType}${page.slug}.html`;
+
           const pageContent = {
             layout: page.acf.layout,
             title: fileName.replace(/-/g, ' '),
-            data: includeData,
+            data: getDataIncludes(contentType),
             sections: page.acf.sections,
             contents: Buffer.from('this is a wordpress page')
           };
@@ -47,15 +98,9 @@ const path = require('path');
           // add page to metalsmith object
           files[fileName] = pageContent;
         });
-
-        done();
       })
-      .catch(function (error) {
-        console.log(error);
-      })
-      .then(function () {
-        console.log("Done processing external files");
-      });  
 
+      done();
+    }));
   }
 };

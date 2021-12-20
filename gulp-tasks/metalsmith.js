@@ -64,7 +64,9 @@ module.exports = function metalsmith(callback) {
 
     // inject pages from wordpress
     .use(getExternalPages({
-      sourceURL: "https://dev-metalsmith.pantheonsite.io/wp-json/wp/v2/pages/",
+      sourceURL: "https://dev-metalsmith.pantheonsite.io/wp-json/wp/v2",
+      //contentTypes: ["pages"]
+      contentTypes: ["pages", "things"]
     }))
 
     // Load metadata from external files
