@@ -29,7 +29,8 @@ const path = require('path');
 const workingDir = path.join(__dirname, '../');
 
 //const monitor = require('../local_modules/metalsmith-monitor');
-const getExternalPages = require('../local_modules/wordpress-pages');
+const getExternalPages = require('../local_modules/wp-pages');
+const getExternalPagesGraphQL = require('../local_modules/wp-graphql-pages');
 
 // Define engine options for the inplace and layouts plugins
 const templateConfig = {
@@ -64,10 +65,17 @@ module.exports = function metalsmith(callback) {
     })
 
     // inject pages from wordpress
+    /*
     .use(getExternalPages({
       sourceURL: "https://dev-metalsmith.pantheonsite.io/wp-json/wp/v2",
-      //contentTypes: ["pages"]
       contentTypes: ["pages", "things"]
+    }))
+    */
+
+    // inject pages from wordpress
+    .use(getExternalPagesGraphQL({
+      sourceURL: "https://dev-metalsmith-with-graphql.pantheonsite.io/graphql",
+      contentTypes: [["pages", "page"], ["things", "thing"]]
     }))
 
     .use(metadata({

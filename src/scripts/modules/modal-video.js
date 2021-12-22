@@ -30,7 +30,7 @@ const modalVideo = (function() {
         
         // we are using the same player for all videos
         // load the appropriate video ID
-        // check whether the requested videoID is equal to what the player has already loaded
+        // check whether the requested videoId is equal to what the player has already loaded
         // if not load new video, otherwise play existing video
         if (requestedVideoID === player.getVideoEmbedCode()) {
           player.playVideo();
@@ -139,7 +139,7 @@ const modalVideo = (function() {
         document.body.insertAdjacentHTML('beforeend', newVideoOverlay);
       }
       
-      const videoID = modalVideoTriggers[0].dataset.videoid;
+      const videoId = modalVideoTriggers[0].dataset.videoid;
       const startTime = modalVideoTriggers[0].dataset.startTime;
       const endTime = modalVideoTriggers[0].dataset.endTime;
 
@@ -157,7 +157,7 @@ const modalVideo = (function() {
 
       // create the video player object
       player = new YT.Player('ytvideo', {
-        videoId: videoID,
+        videoId: videoId,
         playerVars,
         events: {
           onReady: initVideoLinks,

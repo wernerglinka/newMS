@@ -5,11 +5,11 @@
       {# special case: a CTA may be used to trigger video modal #}
       {% if cta.isVideoTrigger %}
         {% if cta.isButton %}
-          <a class="video-button js-modal-video" data-videoid={{cta.videoID}}>
+          <a class="video-button js-modal-video" data-videoid={{cta.videoId}}>
             {{ cta.label}}
           </a>
         {% else %}
-          <a class="video-link js-modal-video" data-videoid={{cta.videoID}}>
+          <a class="video-link js-modal-video" data-videoid={{cta.videoId}}>
             {{ cta.label }}
           </a>
           {% endif%}
