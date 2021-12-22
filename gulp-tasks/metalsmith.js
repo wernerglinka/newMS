@@ -1,6 +1,5 @@
 const Metalsmith = require('metalsmith');
 const assets = require('metalsmith-assets');
-const loadData = require('metalsmith-data-loader');
 const metadata = require('metalsmith-metadata');
 const layouts = require('metalsmith-layouts');
 const inplace = require('metalsmith-in-place');
@@ -73,6 +72,7 @@ module.exports = function metalsmith(callback) {
     */
 
     // inject pages from wordpress
+    // contentTypes arrays need plural and singular of CPTs as they may be different from just having a "s" appended
     .use(getExternalPagesGraphQL({
       sourceURL: "https://dev-metalsmith-with-graphql.pantheonsite.io/graphql",
       contentTypes: [["pages", "page"], ["things", "thing"]]
