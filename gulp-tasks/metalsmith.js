@@ -1,7 +1,8 @@
 const Metalsmith = require('metalsmith');
 const assets = require('metalsmith-assets');
+const drafts = require('@metalsmith/drafts');
 const metadata = require('metalsmith-metadata');
-const layouts = require('metalsmith-layouts');
+const layouts = require('@metalsmith/layouts');
 const inplace = require('metalsmith-in-place');
 const permalinks = require('@metalsmith/permalinks');
 const writeMetadata = require('metalsmith-writemetadata');
@@ -82,6 +83,8 @@ module.exports = function metalsmith(callback) {
       site: "data/siteMetadata.json",
       nav: "data/siteNavigation.json"
     }))
+
+    .use(drafts())
 
     .use(inplace(templateConfig))
 
