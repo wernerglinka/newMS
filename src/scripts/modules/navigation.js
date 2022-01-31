@@ -14,7 +14,7 @@ const navigation = (function() {
     header.addEventListener("click", e => {
       // click on hamburger opens/closes the overlay and the main navigation
       if (e.target.matches(".js-hamburger, .js-hamburger *")) {
-        page.classList.toggle("menuActive")
+        page.classList.toggle("menu-active")
       }
     });
 
@@ -22,7 +22,7 @@ const navigation = (function() {
       // click on any menu link closes the main navigation and the overlay
       if (e.target.matches("a")) {
         // close overlay and menu
-        page.classList.remove("menuActive")
+        page.classList.remove("menu-active")
       }
     })
 

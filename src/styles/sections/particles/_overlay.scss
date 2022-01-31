@@ -18,7 +18,7 @@ header:before {
   transform-origin: top left;
 }
 
-.menuActive header:before {
+.menu-active header:before {
   transform: rotate(0deg);
 }
 
@@ -28,7 +28,7 @@ header:after {
   transform-origin: bottom left;
 }
 
-.menuActive header:after {
+.menu-active header:after {
   transform: rotate(0deg);
 }
 
